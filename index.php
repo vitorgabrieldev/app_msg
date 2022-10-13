@@ -12,7 +12,9 @@
 <html lang="pt-br">
 <head>
 
-    <title>Hello, World!</title>
+    <!-- By: Vitor Gabriel De Oliveira -->
+
+    <title>Chat Online! - Conversa em tempo real</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +26,7 @@
 <body>
     <!-- Components -->
     <section class="container">
-        <section class="container_msg">
+        <!-- <section class="container_msg">
             <h1 class="msg">
                 <?php
                         if(isset($_SESSION['msg'])) {
@@ -49,6 +51,45 @@
             <label for="text">Digite abaixo a mensagem:</label>
             <input type="text" placeholder="Digite a mensagem:" name="msg" class="msg_input">
             <button type="submit" class="btn_send">Atualizar</button>
+        </form>
+    </section> -->
+    <section class="container">
+        <header class="header_page">
+            <h1 class="msg_title">Chat Online!</h1>
+        </header>
+        <hr>
+        <article class="container_msg">
+            <ul class="list_msg">
+                <!-- Exemplo de estrutura -->
+                <!-- <li class="msg_item">Vitor: Olá meu caro amigo!</li> -->
+
+                <?php
+                    if(isset($_SESSION['user'])) {
+
+                        echo "<li class=\"msg_item\">" . $_SESSION['user'] . "</li>";
+
+                        // session_destroy();
+                    } else {
+                        
+                        echo "<li class=\"msg_item\"> Usuario desconhecido! </li>";
+                                                
+                        // include('config_database.php');
+
+                        // $query_consult = mysqli_query($mysqli, "SELECT * FROM msg;");
+
+                        // $msgDB = $query_consult->fetch_assoc();
+
+                        // echo $msgDB['msg'];
+
+                    };
+                ?>
+
+            </ul>
+        </article>
+        <form class="typer_msg" action="./validation_msg.php" method="POST">
+            <input type="text" placeholder="Digite seu username" name="username" class="input_values">
+            <input type="text" placeholder="Digite aqui sua mensagem" name="msg_text" class="input_values">
+            <button type="submit" class="btn_send">Enviar</button>
         </form>
     </section>
 </body>
