@@ -18,29 +18,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styleMain.css">
 
 </head>
 <body>
     <!-- Components -->
     <section class="container">
-        <h1 class="msg">
-            <?php
-                    if(isset($_SESSION['msg'])) {
-                        echo $_SESSION['msg'];
-                    } else {
-                        
-                        include('config_database.php');
+        <section class="container_msg">
+            <h1 class="msg">
+                <?php
+                        if(isset($_SESSION['msg'])) {
+                            echo $_SESSION['msg'];
 
-                        $query_consult = mysqli_query($mysqli, "SELECT * FROM msg;");
+                            session_destroy();
+                        } else {
+                            
+                            include('config_database.php');
 
-                        $msgDB = $query_consult->fetch_assoc();
+                            $query_consult = mysqli_query($mysqli, "SELECT * FROM msg;");
 
-                        echo $msgDB['msg'];
+                            $msgDB = $query_consult->fetch_assoc();
 
-                    };
-            ?>
-        </h1>
+                            echo $msgDB['msg'];
+
+                        };
+                ?>
+            </h1>
+        </section>
         <form class="form_container" action="./validation_msg.php" method="post">
             <label for="text">Digite abaixo a mensagem:</label>
             <input type="text" placeholder="Digite a mensagem:" name="msg" class="msg_input">

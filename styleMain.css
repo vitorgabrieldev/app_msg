@@ -15,16 +15,22 @@ body, html
 .container {
     position: absolute;
     background: #fefefe;
-    border-radius: 12px 10rem;
-    padding: 2rem;
+    padding: .5rem;
     height: 80%;
     height: 80%;
-    box-shadow: 12px 12px 20px #000;    
+    box-shadow: 12px 12px 20px #000; 
+
+    text-align: center;   
 }
 
 .msg {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: monospace;
+}
+
+.container_msg {
+    border: .1rem solid #000000;
+    border-radius: 1.3rem;
 }
 
 .form_container
@@ -37,7 +43,6 @@ body, html
 label {
     font-size: 1.7rem;
     font-family: monospace;
-    text-decoration: underline;
 }
 
 .msg_input {
@@ -57,4 +62,16 @@ label {
     color: #fefefe;
     font-size: 1.9rem;
     cursor: pointer;
+}
+
+.btn_send:hover
+{
+    transform: scale(.9);
+}
+
+
+@media screen  and (max-width: 500px){
+    .container {
+        transform: scale(.7);
+    }
 }
