@@ -1,6 +1,6 @@
 <?php
 
-    $dbHost = 'localhost';
+    $dbHost = 'morrer';
     $dbUsername = 'root';
     $dbDatabase = 'system_msg';
     $dbPassword = '';
