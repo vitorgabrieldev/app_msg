@@ -83,12 +83,7 @@
         <form class="typer_msg" action="./validation_msg.php" method="POST">
             <!-- Form -->
 
-            <?php
-                if(!isset($_SESSION['user'])) {
-                    echo "<input type=\"text\" placeholder=\"Digite seu username\" name=\"username\" class=\"input_values\">";
-                };
-            ?>
-
+            <input type="text" placeholder="Digite seu username" name="username" class="input_values">
             <input type="text" placeholder="Digite aqui sua mensagem" name="msgText" class="input_values">
             <!-- Button submit -->
             <button type="submit" class="btn_send">Enviar</button>

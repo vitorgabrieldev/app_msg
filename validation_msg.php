@@ -11,13 +11,8 @@
             $delete_regs = mysqli_query($mysqli, "DELETE FROM msg");
         };
     
-        if(!isset($_SESSION['user'])) {
-            if($_POST['username'] < 1) {
-                $username = 'Anonimo';
-            } else {
-                $username = $_POST['username'];
-            };
-        };
+        $username = $_POST['username'];
+
 
         $msg = $_POST['msgText'];
 
@@ -27,10 +22,7 @@
             session_start();
         };
 
-        if(!isset($_SESSION['user'])) {
-            $_SESSION['user'] = $_POST['username'];
-        };
-
+        $_SESSION['user'] = $_POST['username'];
         $_SESSION['msg'] = $_POST['msgText'];
 
         header('LOCATION: ./');
