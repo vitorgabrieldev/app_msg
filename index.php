@@ -64,31 +64,33 @@
                 <!-- <li class="msg_item">Vitor: Olá meu caro amigo!</li> -->
 
                 <?php
-                    if(isset($_SESSION['user'])) {
+                    // -- Connect DATABASE - Require mensagens
 
-                        echo "<li class=\"msg_item\">" . $_SESSION['user'] . "</li>";
+                    include('config_database.php');
 
-                        // session_destroy();
-                    } else {
-                        
-                        echo "<li class=\"msg_item\"> Usuario desconhecido! </li>";
-                                                
-                        // include('config_database.php');
+                    $sql = mysqli_query($mysqli,"SELECT * FROM msg;");
 
-                        // $query_consult = mysqli_query($mysqli, "SELECT * FROM msg;");
+                    while($reg = mysqli_fetch_array($sql)) {
+                        $user = $reg['usuario'];
+                        $msg = $reg['msg'];
 
-                        // $msgDB = $query_consult->fetch_assoc();
-
-                        // echo $msgDB['msg'];
-
+                        echo "<li class=\"msg_item\">" . $user . " : " . $msg . "</li>";
                     };
                 ?>
 
             </ul>
         </article>
         <form class="typer_msg" action="./validation_msg.php" method="POST">
-            <input type="text" placeholder="Digite seu username" name="username" class="input_values">
-            <input type="text" placeholder="Digite aqui sua mensagem" name="msg_text" class="input_values">
+            <!-- Form -->
+
+            <?php
+                if(!isset($_SESSION['user'])) {
+                    echo "<input type=\"text\" placeholder=\"Digite seu username\" name=\"username\" class=\"input_values\">";
+                };
+            ?>
+
+            <input type="text" placeholder="Digite aqui sua mensagem" name="msgText" class="input_values">
+            <!-- Button submit -->
             <button type="submit" class="btn_send">Enviar</button>
         </form>
     </section>

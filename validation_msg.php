@@ -1,20 +1,37 @@
 <?php
 
-    if(strlen($_POST['username']) > 0 && strlen($_POST['msg_text']) > 0) {
+    if(strlen($_POST['msgText']) > 0) {
         
         include('config_database.php');
 
-        $username = $_POST['username'];
-        $msg = $_POST['msg_text'];
+        $delete_if = mysqli_query($mysqli, "SELECT * FROM msg");
+        $qts_rows = $delete_if->num_rows;
 
-        // $query = mysqli_query($mysqli,"INSERT INTO mensagens (usuario, msg) VALUES ('$username','$msg');");
+        if($qts_rows > 7) {
+            $delete_regs = mysqli_query($mysqli, "DELETE FROM msg");
+        };
+    
+        if(!isset($_SESSION['user'])) {
+            if($_POST['username'] < 1) {
+                $username = 'Anonimo';
+            } else {
+                $username = $_POST['username'];
+            };
+        };
+
+        $msg = $_POST['msgText'];
+
+        $query = mysqli_query($mysqli,"INSERT INTO msg (usuario, msg) VALUES ('$username','$msg');");
 
         if(!isset($_SESSION)) {
             session_start();
         };
 
-        $_SESSION['user'] = $_POST['username'];
-        $_SESSION['msg'] = $_POST['msg'];
+        if(!isset($_SESSION['user'])) {
+            $_SESSION['user'] = $_POST['username'];
+        };
+
+        $_SESSION['msg'] = $_POST['msgText'];
 
         header('LOCATION: ./');
 
